@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import person from './Person/Person';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+
   render() {
 
     const style = {
@@ -49,27 +51,33 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null; 
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age} 
+            click={this.switchNameHandler.bind(this, 'Ceejee')}/>
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age} 
+            changed={this.nameChangedHandler}/>
+          <Person 
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age}>My hobbies: Cooking</Person>
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <button 
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
         </button>
-        { this.state.showPersons ?
-          <div>
-            <Person 
-              name={this.state.persons[0].name} 
-              age={this.state.persons[0].age} 
-              click={this.switchNameHandler.bind(this, 'Ceejee')}/>
-            <Person 
-              name={this.state.persons[1].name} 
-              age={this.state.persons[1].age} 
-              changed={this.nameChangedHandler}/>
-            <Person 
-              name={this.state.persons[2].name} 
-              age={this.state.persons[2].age}>My hobbies: Cooking</Person>
-          </div> : null
-        }
+        {persons}
       </div>
     );
   }
