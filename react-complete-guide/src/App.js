@@ -33,7 +33,7 @@ class App extends Component {
     persons[personIndex] = person; 
 
     // Updating the state with the new persons array with the name changed. 
-    this.setState({persons: persons })
+    this.setState({persons: persons})
   }
 
   togglePersonsHandler = () => {
