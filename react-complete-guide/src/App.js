@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
+import styled from 'styled-components';
 
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  };
+`; 
 
 class App extends Component {
 
@@ -51,20 +64,6 @@ class App extends Component {
 
 
   render() {
-
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     let persons = null; 
 
     if (this.state.showPersons) {
@@ -80,13 +79,6 @@ class App extends Component {
           })}
         </div>
       );
-
-      // Reaching out to the style object and changing the background to red if the button is clicked.
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     // Setting up and array that can be filled with class names depending on the amount of persons. 
@@ -99,20 +91,15 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
         <div className="App">
           {/* .join() allows the array to be turned into a string */}
           <p className={classes.join(' ')}>Hi, I'm a React App</p>
-          <button 
-            style={style}
-            onClick={this.togglePersonsHandler}>Toggle Persons
-          </button>
+          <StyledButton alt={this.state.showPersons}  onClick={this.togglePersonsHandler}> Toggle Persons </StyledButton>
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
 // Calling radium as a function and wrapping the app with it.
-export default Radium(App);
+export default App;
