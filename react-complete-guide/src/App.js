@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
+
 
 class App extends Component {
 
@@ -56,7 +58,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null; 
@@ -77,6 +83,10 @@ class App extends Component {
 
       // Reaching out to the style object and changing the background to red if the button is clicked.
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     // Setting up and array that can be filled with class names depending on the amount of persons. 
@@ -102,4 +112,5 @@ class App extends Component {
   }
 }
 
-export default App;
+// Calling radium as a function and wrapping the app with it.
+export default Radium(App);
