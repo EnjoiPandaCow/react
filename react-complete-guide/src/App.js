@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 
@@ -99,15 +99,17 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        {/* .join() allows the array to be turned into a string */}
-        <p className={classes.join(' ')}>Hi, I'm a React App</p>
-        <button 
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          {/* .join() allows the array to be turned into a string */}
+          <p className={classes.join(' ')}>Hi, I'm a React App</p>
+          <button 
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
