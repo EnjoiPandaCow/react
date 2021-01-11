@@ -79,8 +79,19 @@ class App extends Component {
       style.backgroundColor = 'red';
     }
 
+    // Setting up and array that can be filled with class names depending on the amount of persons. 
+    const classes = []; 
+    if (this.state.persons.length <= 2) {
+      classes.push('red'); 
+    }
+    if (this.state.persons.length <=1) {
+      classes.push('bold');
+    }
+
     return (
       <div className="App">
+        {/* .join() allows the array to be turned into a string */}
+        <p className={classes.join(' ')}>Hi, I'm a React App</p>
         <button 
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
