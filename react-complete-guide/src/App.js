@@ -51,7 +51,8 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -72,7 +73,10 @@ class App extends Component {
               changed={(event) => this.nameChangedHandler(event, person.id)}/>
           })}
         </div>
-      )
+      );
+
+      // Reaching out to the style object and changing the background to red if the button is clicked.
+      style.backgroundColor = 'red';
     }
 
     return (
