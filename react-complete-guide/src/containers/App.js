@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -47,44 +48,25 @@ class App extends Component {
     this.setState({persons: persons})
   }
 
-
   render() {
     let persons = null;
-    let btnClass = '';
-
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          <Persons 
-            persons={this.state.persons} 
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />
-        </div>
-      );
-
-      // Pushing the red CSS class to change the color of the button when clicked.
-      btnClass = classes.Red;
-    }
-
-    // Setting up and array that can be filled with class names depending on the amount of persons. 
-    const assignedClasses = []; 
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); 
-    }
-    if (this.state.persons.length <=1) {
-      assignedClasses.push(classes.bold);
+      persons = <Persons 
+        persons={this.state.persons} 
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangedHandler} />
     }
 
     return (
         <div className={classes.App}>
-          {/* .join() allows the array to be turned into a string */}
-          <p className={assignedClasses.join(' ')}>Hi, I'm a React App</p>
-          <button className={btnClass} onClick={this.togglePersonsHandler}> Toggle Persons </button>
+          <Cockpit 
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonsHandler}/>
           {persons}
         </div>
     );
   }
 }
 
-// Calling radium as a function and wrapping the app with it.
 export default App;
