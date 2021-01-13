@@ -25,7 +25,7 @@ const cockpit = (props) => {
     return (
         <div className={classes.Cockpit}>
             {/* .join() allows the array to be turned into a string */}
-            <p className={assignedClasses.join(' ')}>Hi, I'm a React App</p>
+            <h2 className={assignedClasses.join(' ')}>{props.title}</h2>
             <button className={btnClass} onClick={props.clicked}> Toggle Persons </button>
         </div>
     );
