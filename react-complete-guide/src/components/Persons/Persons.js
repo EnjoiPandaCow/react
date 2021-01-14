@@ -2,14 +2,19 @@ import React from "react";
 import Person from "./Person/Person";
 
 // If you only have to return one line in the function body, when using arrow functions you do not need to use a return.
-const persons = (props) => props.persons.map((person, index) => {
-    return <Person
-      click={() => props.clicked(index)}
-      name={person.name}
-      age={person.age}
-      key={person.id}
-      changed={(event) => props.changed(event, person.id)}
-    />;
+const persons = (props) => {
+  console.log("[Persons.js] rendering ...");
+  return props.persons.map((person, index) => {
+    return (
+      <Person
+        click={() => props.clicked(index)}
+        name={person.name}
+        age={person.age}
+        key={person.id}
+        changed={(event) => props.changed(event, person.id)}
+      />
+    );
   });
+};
 
-  export default persons;
+export default persons;
