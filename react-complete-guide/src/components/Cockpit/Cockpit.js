@@ -12,8 +12,20 @@ const cockpit = (props) => {
     setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000);
+    // Returning a function that runs after the first render cycle
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    };
     // Adding this array allows us to only send the alert when persons is changed. The empty array ensures that this only happens when the component is first rendered.
   }, /*[props.persons]*/ []);
+
+  // Cleans up after every render cycle
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    };
+  });
 
     // Setting up and array that can be filled with class names depending on the amount of persons. 
     const assignedClasses = []; 

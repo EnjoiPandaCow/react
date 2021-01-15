@@ -19,7 +19,8 @@ class App extends Component {
       { id: "7532", name: 'Crona', age: 46},
     ],
     otherState: 'another value',
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
 
   static getDerivedStateFromProps (props, state) {
@@ -84,14 +85,26 @@ class App extends Component {
     }
 
     return (
-        <div className={classes.App}>
-          <Cockpit 
+      <div className={classes.App}>
+        {/* Added an inline event handler, and anonmys function that executed when a click occurs */}
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        {/* Checking if the cockpit should be rendered */}
+        {this.state.showCockpit ? (
+          <Cockpit
             title={this.props.appTitle}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
-            clicked={this.togglePersonsHandler}/>
-          {persons}
-        </div>
+            clicked={this.togglePersonsHandler}
+          />
+        ) : null}
+        {persons}
+      </div>
     );
   }
 }
