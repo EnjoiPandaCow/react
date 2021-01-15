@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 // Have to return a normal function body as we will need more logic.
 const cockpit = (props) => {
+
+  // Reach Hook
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+  });
 
     // Setting up and array that can be filled with class names depending on the amount of persons. 
     const assignedClasses = []; 
