@@ -7,7 +7,13 @@ const cockpit = (props) => {
   // Reach Hook
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-  });
+
+    // Mock HTTP Request 
+    setTimeout(() => {
+      alert('Saved data to cloud!');
+    }, 1000);
+    // Adding this array allows us to only send the alert when persons is changed. The empty array ensures that this only happens when the component is first rendered.
+  }, /*[props.persons]*/ []);
 
     // Setting up and array that can be filled with class names depending on the amount of persons. 
     const assignedClasses = []; 
