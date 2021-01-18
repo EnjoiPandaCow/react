@@ -11,8 +11,14 @@ class Persons extends Component {
   // The upcoming props which will have an affect and the upcoming state.
   shouldComponentUpdate(nextProps) {
     console.log('[Persons.js] shouldComponentUpdate');
-    // Have to return true if react should continue updating or false if it should not.
-    return true;
+    /* Have to return true if react should continue updating or false if it should not.
+    return true; */
+    // Checking to see if persons has updated and if not, not re rendering the component.
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
