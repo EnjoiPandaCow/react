@@ -1,25 +1,27 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Person from "./Person/Person";
 
-class Persons extends Component {
+class Persons extends PureComponent {
 
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps');
   //   return state;
   // }
 
+  /*
   // The upcoming props which will have an affect and the upcoming state.
   shouldComponentUpdate(nextProps) {
     console.log('[Persons.js] shouldComponentUpdate');
-    /* Have to return true if react should continue updating or false if it should not.
-    return true; */
-    // Checking to see if persons has updated and if not, not re rendering the component.
-    if (nextProps.persons !== this.props.persons) {
+      Have to return true if react should continue updating or false if it should not.
+      return true;
+    // Checking to see if persons has updated and if not, not re rendering the component. (Also checking if the changed and clicked functions have changed.)
+    if (nextProps.persons !== this.props.persons || nextProps.changed !== this.props.changed || nextProps.clicked !== this.props.clicked ) {
       return true;
     } else {
       return false;
     }
   }
+  */
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');
