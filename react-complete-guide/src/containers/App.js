@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+// Imported with a lower case character becasuse it is not a component anymore it's a normal function.
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 class App extends Component {
 
@@ -86,8 +88,8 @@ class App extends Component {
     }
 
     return (
-      // Using the WithClass HOC to wrap in a div and style it. 
-      <WithClass classes={classes.App}>
+       
+      <Aux>
         {/* Added an inline event handler, and anonmys function that executed when a click occurs */}
         <button
           onClick={() => {
@@ -106,9 +108,10 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+// To use the function based HOC's we need to wrap the component in it and then pass the arguments. 
+export default withClass(App, classes.App);
