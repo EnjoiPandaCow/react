@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
 
@@ -85,7 +86,8 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      // Using the WithClass HOC to wrap in a div and style it. 
+      <WithClass classes={classes.App}>
         {/* Added an inline event handler, and anonmys function that executed when a click occurs */}
         <button
           onClick={() => {
@@ -104,7 +106,7 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
