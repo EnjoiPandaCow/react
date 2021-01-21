@@ -14,4 +14,4 @@ const withClass = (WrappedCompoent, className) => {
         </div>
     );
 }
-export default withClass; 
+export default withClass;

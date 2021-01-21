@@ -23,7 +23,8 @@ class App extends Component {
     ],
     otherState: 'another value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
   static getDerivedStateFromProps (props, state) {
@@ -63,8 +64,14 @@ class App extends Component {
     persons[personIndex] = person; 
 
     // Updating the state with the new persons array with the name changed. 
-    this.setState({persons: persons})
-  }
+    // Becasue of adding the change counter we rely on the previous state to update. Becasue of this we need to return a function.
+    this.setState((preState, props) => {
+      return {
+        persons: persons, 
+        changeCounter: preState.changeCounter + 1
+      }
+    });
+  };
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
