@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classes from "./Person.css";
 import Aux from '../../../hoc/Aux'
 import withClass from '../../../hoc/withClass';
@@ -19,5 +20,14 @@ class Person extends Component {
     );
   }
 }
+
+// React will watch for this in devlopment mode and then give you a warning if you pass incorect props. 
+Person.propTypes = {
+  // For a click I expect to get a pointer to a function.
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
 
 export default withClass(Person, classes.Person);
