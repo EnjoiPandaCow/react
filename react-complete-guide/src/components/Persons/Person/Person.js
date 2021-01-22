@@ -5,6 +5,18 @@ import Aux from '../../../hoc/Aux'
 import withClass from '../../../hoc/withClass';
 
 class Person extends Component {
+
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+
+  // Use ref to focus on the last input element
+  componentDidMount() {
+    // this.inputElement.focus()
+    this.inputElementRef.current.focus();
+  }
+
   render() {
     console.log("[Person.js] rendering ...");
     return (
@@ -15,7 +27,16 @@ class Person extends Component {
           Im {this.props.name} and I am {this.props.age} years old!
         </p>
         <p key="i2">{this.props.children}</p>
-        <input key="i3" type="text" onChange={this.props.changed} value={this.props.name} />
+        <input 
+          key="i3"
+          /* The argument you are getting is a reference to the element you place this on. 
+          Getting access to the imput element and storing it in a global property (this.inputElement) so that we can access it anywhere in our application.
+          ref={(inputEl) => {this.inputElement = inputEl}} */
+          ref={this.inputElementRef}
+          type="text" 
+          onChange={this.props.changed} 
+          value={this.props.name} 
+        />
     </Aux>
     );
   }
