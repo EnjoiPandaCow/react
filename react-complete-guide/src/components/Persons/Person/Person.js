@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classes from "./Person.css";
 import Aux from '../../../hoc/Aux'
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 class Person extends Component {
 
@@ -21,7 +22,10 @@ class Person extends Component {
     console.log("[Person.js] rendering ...");
     return (
     <Aux>
-        {this.props.isAuth ? <p>Authenticated</p> : <p>Please Log In</p>}
+        <AuthContext.Consumer>
+          {/* Function where you get context as an argument */}
+          {(context) => context.authenticated ? <p>Authenticated</p> : <p>Please Log In</p>}
+        </AuthContext.Consumer>
         {/* This needs to be used to access props of a class based component. 
         Converted this to be an array of elements to return adjacent elements. */}
         <p key="i1" onClick={this.props.click}>
