@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 // Have to return a normal function body as we will need more logic.
 const cockpit = (props) => {
+
+  // Allows you to get access to your DOM elements
+  const toggleBtnRef = useRef(null);
 
   // Reach Hook
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
 
     // Mock HTTP Request 
-    setTimeout(() => {
-      alert('Saved data to cloud!');
-    }, 1000);
+    // setTimeout(() => {
+    //   alert('Saved data to cloud!');
+    // }, 1000);
+    toggleBtnRef.current.click();
     // Returning a function that runs after the first render cycle
     return () => {
       console.log('[Cockpit.js] cleanup work in useEffect');
@@ -49,7 +53,12 @@ const cockpit = (props) => {
         <div className={classes.Cockpit}>
             {/* .join() allows the array to be turned into a string */}
             <h2 className={assignedClasses.join(' ')}>{props.title}</h2>
-            <button className={btnClass} onClick={props.clicked}> Toggle Persons </button>
+            <button 
+              ref={toggleBtnRef}
+              className={btnClass} 
+              onClick={props.clicked}> 
+              Toggle Persons 
+            </button>
         </div>
     );
 }
