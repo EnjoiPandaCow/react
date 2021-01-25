@@ -12,20 +12,22 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  // Getting access to context using context type
+  static contextType = AuthContext;
+
   // Use ref to focus on the last input element
   componentDidMount() {
     // this.inputElement.focus()
     this.inputElementRef.current.focus();
+    console.log(this.context.authenticated);
   }
 
   render() {
     console.log("[Person.js] rendering ...");
     return (
     <Aux>
-        <AuthContext.Consumer>
-          {/* Function where you get context as an argument */}
-          {(context) => context.authenticated ? <p>Authenticated</p> : <p>Please Log In</p>}
-        </AuthContext.Consumer>
+        {/* Function where you get context as an argument */}
+        {this.context.authenticated ? <p>Authenticated</p> : <p>Please Log In</p>}
         {/* This needs to be used to access props of a class based component. 
         Converted this to be an array of elements to return adjacent elements. */}
         <p key="i1" onClick={this.props.click}>

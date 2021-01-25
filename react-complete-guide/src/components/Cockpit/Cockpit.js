@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import classes from './Cockpit.css';
 import AuthContext from '../../context/auth-context';
 
@@ -7,6 +7,9 @@ const cockpit = (props) => {
 
   // Allows you to get access to your DOM elements
   const toggleBtnRef = useRef(null);
+
+  const authContext = useContext(AuthContext)
+  console.log(authContext.authenticated);
 
   // Reach Hook
   useEffect(() => {
@@ -60,9 +63,7 @@ const cockpit = (props) => {
               onClick={props.clicked}> 
               Toggle Persons 
             </button>
-            <AuthContext.Consumer>
-              {context => <button onClick={context.login}>Log In</button>}
-            </AuthContext.Consumer>
+            <button onClick={authContext.login}>Log In</button>
         </div>
     );
 }
