@@ -21,6 +21,7 @@ class Person extends Component {
     console.log("[Person.js] rendering ...");
     return (
     <Aux>
+        {this.props.isAuth ? <p>Authenticated</p> : <p>Please Log In</p>}
         {/* This needs to be used to access props of a class based component. 
         Converted this to be an array of elements to return adjacent elements. */}
         <p key="i1" onClick={this.props.click}>
