@@ -42,15 +42,47 @@ class BurgerBuilder extends Component {
     }
 
     removeIngredientHandler = (type) => {
+        // Access the old state and the amount of a single type of ingredient.
+        const oldCount = this.state.ingredients[type];
 
+        // If there is no ingridents nothing happens.
+        if(oldCount <= 0) {
+            return;
+        }
+
+        const updatedCount = oldCount - 1;
+        const updatedIngredients = {
+            // State should be updated in an immuteable way. Use the spread operator to create a new object.
+            ...this.state.ingredients 
+        };
+        updatedIngredients[type] = updatedCount;
+        
+        // Updating the price of the burger. 
+        const priceDeduction = INGREDIENT_PRICES[type];
+        const oldPrice = this.state.totalPrice;
+        const newPrice = oldPrice - priceDeduction;
+
+        this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
     }
 
     render () {
+
+        const disabledInfo = {
+            ...this.state.ingredients
+        };
+        
+        // Checking if each key in the state is less that 0 and returning true or false. 
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0
+        }
+
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls 
-                    ingredientAdded={this.addIngredientHandler}/>
+                    ingredientAdded={this.addIngredientHandler}
+                    ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disabledInfo} />
             </Aux>
         );
     }
