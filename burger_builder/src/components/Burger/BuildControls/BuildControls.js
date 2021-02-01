@@ -12,6 +12,7 @@ const controls = [
 
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
+        <p>Current Price : <strong>€{props.price.toFixed(2)}</strong></p>
         {/* Loop through all of the controls to output a BuildComponent for each. */}
         {controls.map(ctrl => (
             <BuildControl 
