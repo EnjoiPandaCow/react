@@ -6,7 +6,7 @@ import BuildControl from './BuildControl/BuildControl';
 const controls = [
     {label: 'Salad', type: 'salad'},
     {label: 'Bacon', type: 'bacon'},
-    {label: 'Meat', type: 'cheese'},
+    {label: 'Cheese', type: 'cheese'},
     {label: 'Meat', type: 'meat'}
 ]
 
@@ -23,6 +23,9 @@ const buildControls = (props) => (
                 removed={() => props.ingredientRemoved(ctrl.type)} 
                 disabled={props.disabled[ctrl.type]}/>
         ))}
+        <button 
+            className={classes.OrderButton}
+            disabled={props.purchasable}>Order Now</button>
     </div>
 );
 
